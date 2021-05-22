@@ -5,7 +5,7 @@ import HomePage from './pages/homepage/hompage.comp';
 import ShopPage from './pages/shoppage/shoppage.comp';
 import Header from './components/header/header.comp';
 import SingInAndSignOut from './pages/sign-in-and-sign-out/sign-in-and-sign-out.comp';
-import {auth} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 const HatPage = () => (
   <div>
     <h1>
@@ -16,9 +16,19 @@ const HatPage = () => (
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect( ()=> {
-    auth.onAuthStateChanged( user => {
-      setCurrentUser(user);
-      console.log(user)
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot => {
+            setCurrentUser({
+              id: snapShot.id,
+              ...snapShot.data()
+            })
+        })
+      }
+      else {
+        setCurrentUser(userAuth)
+      }
     }
     )    
   })

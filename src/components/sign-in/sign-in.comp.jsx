@@ -12,13 +12,15 @@ const SignIn = () => {
 })
 
 const handleChange = event => {
-    const {value, name} = event.target;
-    setUser({[name]: value})
+    setUser({
+        ...user,
+        [event.target.name]: event.target.value,
+      })
 }
 
 const handleSubmit = event => {
     event.preventDefault();
-    setUser({email:" ",
+    setUser({email:"",
     password: ""})
 }
 
