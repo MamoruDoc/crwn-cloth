@@ -5,6 +5,10 @@ export const addItem = (item) => ({
   type: "add_item",
   payload: item,
 });
+export const removeItem = (item) => ({
+  type: "remove_item",
+  payload: item,
+});
 export const clearItemFromCart = (item) => ({
   type: "clear_item_from_cart",
   payload: item,
