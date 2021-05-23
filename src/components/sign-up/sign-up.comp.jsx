@@ -11,10 +11,10 @@ const SignUp = () => {
         password: "",
         confirmPassword: ""
 };
-const [user, setUser] = useState(emptyUser);
+const [newUser, setUser] = useState(emptyUser);
 const handleSubmit = async event => {
     event.preventDefault();
-    const {displayName, email, password, confirmPassword} = user;
+    const {displayName, email, password, confirmPassword} = newUser;
     if (password !== confirmPassword) {
         alert("passwords do not match");
         return
@@ -31,7 +31,7 @@ const handleSubmit = async event => {
 }
 const handleChange = event => {
     setUser({
-        ...user,
+        ...newUser,
         [event.target.name]: event.target.value,
       })
 } 
@@ -43,28 +43,28 @@ return (
             <FormInput 
             type='text' 
             name='displayName' 
-            value={user.displayName} 
+            value={newUser.displayName} 
             onChange={handleChange}
             label='Display Name'
             required />
             <FormInput 
             type='email' 
             name='email' 
-            value={user.email} 
+            value={newUser.email} 
             onChange={handleChange}
             label='Email'
             required />
             <FormInput 
             type='password' 
             name='password' 
-            value={user.password} 
+            value={newUser.password} 
             onChange={handleChange}
             label='Password'
             required />
             <FormInput 
             type='password' 
             name='confirmPassword' 
-            value={user.confirmPassword} 
+            value={newUser.confirmPassword} 
             onChange={handleChange}
             label='Confirm Password'
             required />
