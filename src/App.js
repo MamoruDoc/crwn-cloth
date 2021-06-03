@@ -8,9 +8,14 @@ import ShopPage from "./pages/shoppage/shoppage.comp";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-out/sign-in-and-sign-out.comp";
 import Header from "./components/header/header.comp";
 import CheckoutPage from "./pages/checkout/checkout.comp";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionAndDocuments,
+} from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selector";
+import { selectCollectionForPreview } from "./redux/shop/shop.selector";
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
